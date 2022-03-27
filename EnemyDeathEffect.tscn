@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Effect.gd" type="Script" id=1]
+[ext_resource path="res://kenney_microroguelike_1.2/Tiles/Colored/tile_0026.png" type="Texture" id=2]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), null, ExtResource( 2 ), null, ExtResource( 2 ) ],
+"loop": true,
+"name": "Animate",
+"speed": 15.0
+} ]
+
+[node name="EnemyDeathEffect" type="AnimatedSprite"]
+frames = SubResource( 1 )
+animation = "Animate"
+frame = 3
+script = ExtResource( 1 )

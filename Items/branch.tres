@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Items/Item.gd" type="Script" id=1]
+[ext_resource path="res://Items/branch.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Branch"
+texture = ExtResource( 2 )
+id = "1"
+description = "It fell from a tree"
+type = "melee"
+subtype = "sword"
+damage = 2
+path = "res://Items/branch.tres"
+object = "res://objects/"

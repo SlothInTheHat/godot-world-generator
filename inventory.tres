@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://inventory.gd" type="Script" id=1]
+[ext_resource path="res://Items/arrow.tres" type="Resource" id=2]
+[ext_resource path="res://Items/stone.tres" type="Resource" id=3]
+[ext_resource path="res://Items/branch.tres" type="Resource" id=4]
+[ext_resource path="res://Items/log.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 1 )
+items = [ ExtResource( 4 ), null, ExtResource( 2 ), null, null, null, null, ExtResource( 3 ), null, null, null, ExtResource( 5 ), null, null, null, null ]

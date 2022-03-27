@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://8bitfont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://inventorySlot.png" type="Texture" id=2]
+[ext_resource path="res://CraftingSlot.gd" type="Script" id=3]
+
+[node name="ItemSlot1" type="TextureRect"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+texture = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemTexture" type="TextureRect" parent="."]
+margin_right = 8.0
+margin_bottom = 8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ItemTexture"]
+margin_left = 3.1839
+margin_top = 6.64874
+margin_right = 43.1839
+margin_bottom = 20.6487
+rect_scale = Vector2( 0.25, 0.25 )
+custom_fonts/font = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="." to="." method="_on_ItemSlot1_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_ItemSlot1_mouse_exited"]

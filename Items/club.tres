@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Items/Item.gd" type="Script" id=1]
+[ext_resource path="res://Items/club.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Club"
+texture = ExtResource( 2 )
+held = ExtResource( 2 )
+id = "3"
+description = "A thick branch"
+type = "melee"
+subtype = "club"
+damage = 4
+path = "res://Items/club.tres"
+object = "res://objects/sword.tscn"

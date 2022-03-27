@@ -1,0 +1,5 @@
+{
+	"sword":{"Log": 4, "Stone": 2},
+	"stone_axe": {"Branch": 4, "Stone": 2},
+	"club":{"Log": 4, "Branch": 2}
+}

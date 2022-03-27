@@ -1,0 +1,169 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://munch stump.png" type="Texture" id=1]
+[ext_resource path="res://Hurtbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Munch Stump.gd" type="Script" id=3]
+[ext_resource path="res://Stats.tscn" type="PackedScene" id=4]
+[ext_resource path="res://PlayerDetectionZone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Hitbox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://SoftCollision.tscn" type="PackedScene" id=7]
+[ext_resource path="res://WanderController.tscn" type="PackedScene" id=8]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( -2.10375, -3.9556, 2.1341, -3.98871, 2.1672, -2.99547, 3.22667, -2.96236, 3.25978, -1.00897, 2.1341, -1.00897, 2.20031, -0.0488362, 3.19356, -0.015728, 3.25978, 0.94441, 4.21991, 1.01063, 4.31924, 2.03698, 3.16045, 1.97076, 3.16045, 1.04373, 2.1672, 1.01063, 2.10099, 3.99036, 1.07463, 4.02347, 1.00842, 3.06333, -1.14361, 2.96401, -1.18458, 4.08969, -2.20876, 4.02347, -2.20308, 1.01063, -3.16321, 1.10995, -3.16321, 2.00387, -4.28889, 2.03698, -4.36306, 1.01063, -3.26254, 1.07684, -3.16321, 0.0504885, -2.16997, -0.0488362, -2.13686, -0.942758, -3.29565, -1.04208, -3.19632, -2.92925, -2.16997, -3.02857 )
+
+[sub_resource type="Animation" id=2]
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.299843, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 1 ), Vector2( 1, 1.1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 5.0, 0.0, -5.0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Attack"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 5.0, 0.0, -5.0 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 0.490541
+height = 3.67836
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 3.87004
+height = 0.0
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 44.2451
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 4.07162
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 5.08269
+
+[node name="Munch Stump" type="KinematicBody2D"]
+collision_layer = 16
+collision_mask = 2147483649
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+rotation = 0.0872665
+scale = Vector2( 1.03335, 1 )
+texture = ExtResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite"]
+scale = Vector2( 0.937471, 1 )
+occluder = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 2 )
+anims/Walk = SubResource( 3 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+autoplay = "Attack"
+anims/Attack = SubResource( 9 )
+anims/Walk = SubResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 3.49999 )
+rotation = 1.5708
+shape = SubResource( 4 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 2 )]
+visible = false
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource( 5 )
+
+[node name="Stats" parent="." instance=ExtResource( 4 )]
+max_health = 5
+
+[node name="PlayerDetectionZone" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+modulate = Color( 1, 1, 1, 0.509804 )
+shape = SubResource( 6 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 6 )]
+collision_mask = 260
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 7 )
+disabled = true
+
+[node name="SoftCollision" parent="." instance=ExtResource( 7 )]
+visible = false
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+shape = SubResource( 8 )
+
+[node name="WanderController" parent="." instance=ExtResource( 8 )]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
+
+[editable path="Hurtbox"]
+
+[editable path="PlayerDetectionZone"]
+
+[editable path="Hitbox"]
+
+[editable path="SoftCollision"]

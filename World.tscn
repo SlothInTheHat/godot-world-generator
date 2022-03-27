@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://vegetation/movingTree.tscn" type="PackedScene" id=2]
+[ext_resource path="res://stone.tscn" type="PackedScene" id=3]
+[ext_resource path="res://WorldGenerator.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World.gd" type="Script" id=6]
+[ext_resource path="res://Health UI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://UI container.tscn" type="PackedScene" id=8]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="WorldGenerator" parent="YSort" instance=ExtResource( 4 )]
+special_tiles = {
+9: ExtResource( 3 ),
+10: ExtResource( 2 )
+}
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Health UI" parent="UI" instance=ExtResource( 7 )]
+margin_left = 3.91279
+margin_top = 3.66177
+margin_right = 35.9128
+margin_bottom = 11.6618
+
+[node name="GUI" type="Control" parent="UI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UI container" parent="UI" instance=ExtResource( 8 )]

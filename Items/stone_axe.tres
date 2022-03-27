@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://Items/Item.gd" type="Script" id=1]
+[ext_resource path="res://stone_axe.png" type="Texture" id=2]
+[ext_resource path="res://Items/axe_held.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+name = "Stone Axe"
+texture = ExtResource( 2 )
+held = ExtResource( 3 )
+id = "7"
+description = "chop chop"
+type = "axe"
+subtype = ""
+damage = 3
+path = "res://Items/stone_axe.tres"
+object = "res://objects/"

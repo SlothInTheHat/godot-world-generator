@@ -1,0 +1,124 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://8bitfont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://informationPanel.png" type="Texture" id=2]
+[ext_resource path="res://Mystery Font.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://ToolTip.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+font_data = ExtResource( 3 )
+
+[node name="ToolTip" type="Popup"]
+visible = true
+margin_right = -64.0
+margin_bottom = -26.0
+rect_min_size = Vector2( 96, 64 )
+mouse_filter = 2
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="N" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="M" type="MarginContainer" parent="N"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 9
+custom_constants/margin_left = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="V" type="VBoxContainer" parent="N/M"]
+margin_left = 4.0
+margin_top = 9.0
+margin_right = 145.0
+margin_bottom = 69.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="N/M/V"]
+margin_right = 141.0
+margin_bottom = 8.0
+custom_fonts/font = SubResource( 1 )
+text = "ItemName"
+align = 1
+valign = 1
+
+[node name="Stat1" type="HBoxContainer" parent="N/M/V"]
+margin_top = 12.0
+margin_right = 141.0
+margin_bottom = 20.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat" type="Label" parent="N/M/V/Stat1"]
+margin_bottom = 8.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+valign = 1
+
+[node name="Difference" type="Label" parent="N/M/V/Stat1"]
+margin_left = 4.0
+margin_right = 4.0
+margin_bottom = 8.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+valign = 1
+
+[node name="Stat2" type="HBoxContainer" parent="N/M/V"]
+margin_top = 24.0
+margin_right = 141.0
+margin_bottom = 32.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat" type="Label" parent="N/M/V/Stat2"]
+margin_bottom = 8.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+valign = 1
+
+[node name="Difference" type="Label" parent="N/M/V/Stat2"]
+margin_left = 4.0
+margin_right = 4.0
+margin_bottom = 8.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+valign = 1
+
+[node name="Stat3" type="HBoxContainer" parent="N/M/V"]
+margin_top = 36.0
+margin_right = 141.0
+margin_bottom = 44.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat" type="Label" parent="N/M/V/Stat3"]
+margin_bottom = 8.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+valign = 1
+
+[node name="Difference" type="Label" parent="N/M/V/Stat3"]
+margin_left = 4.0
+margin_right = 4.0
+margin_bottom = 8.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+valign = 1

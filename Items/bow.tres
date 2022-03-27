@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Items/Item.gd" type="Script" id=1]
+[ext_resource path="res://Items/bow.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Bow"
+texture = ExtResource( 2 )
+id = ""
+description = ""
+type = ""
+damage = 1
+path = "res://Items/bow.tres"

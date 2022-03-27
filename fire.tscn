@@ -1,0 +1,148 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://fire.png" type="Texture" id=1]
+[ext_resource path="res://smoke.png" type="Texture" id=2]
+[ext_resource path="res://whisplight.png" type="Texture" id=3]
+[ext_resource path="res://fire.gd" type="Script" id=4]
+[ext_resource path="res://firelogs.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "flame"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("fire:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -5.0, 0.0, 5.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("fire:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1.1 ), Vector2( 1.1, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("fire:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true ]
+}
+
+[sub_resource type="Curve" id=2]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, -333.818 ), 0.0, 0.0, 0, 0, Vector2( 1, 360 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0.410853, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.803922 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+
+[sub_resource type="Curve" id=8]
+max_value = 100.0
+_data = [ Vector2( 0, 1 ), 0.0, -424.909, 0, 0, Vector2( 1, 55.4545 ), -14.3939, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="Curve" id=10]
+_data = [ Vector2( 0.0197368, 0.472727 ), 0.0, 0.361905, 0, 0, Vector2( 1, 1 ), 0.258389, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+emission_shape = 2
+emission_box_extents = Vector3( 2, 0, 1 )
+flag_disable_z = true
+spread = 90.0
+gravity = Vector3( 0, -20, 0 )
+angular_velocity = 50.0
+angular_velocity_random = 1.0
+angular_velocity_curve = SubResource( 5 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 1.0
+linear_accel_random = 1.0
+damping_curve = SubResource( 9 )
+angle_random = 1.0
+angle_curve = SubResource( 3 )
+scale_random = 1.0
+scale_curve = SubResource( 11 )
+color_ramp = SubResource( 7 )
+
+[sub_resource type="CapsuleShape2D" id=13]
+radius = 4.11193
+height = 1.20416
+
+[node name="fire" type="KinematicBody2D"]
+position = Vector2( 48, 24 )
+script = ExtResource( 4 )
+
+[node name="logs" type="Sprite" parent="."]
+position = Vector2( -1, -2 )
+texture = ExtResource( 5 )
+
+[node name="fire" type="Sprite" parent="."]
+position = Vector2( 0, -4 )
+z_index = 1
+texture = ExtResource( 1 )
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "flame"
+anims/flame = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+show_behind_parent = true
+position = Vector2( 0, -2.07399 )
+emitting = false
+amount = 5
+lifetime = 1.5
+explosiveness = 0.1
+randomness = 1.0
+process_material = SubResource( 12 )
+texture = ExtResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+energy = 0.5
+shadow_enabled = true
+shadow_color = Color( 1, 0.87451, 0.45098, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 0 )
+rotation = 1.5708
+shape = SubResource( 13 )
